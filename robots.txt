@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://finmodelai.github.io/sitemap.xml
