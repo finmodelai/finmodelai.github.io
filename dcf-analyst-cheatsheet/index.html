@@ -29,6 +29,12 @@
   .next{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;margin-top:48px}
   .next h3{font-weight:800;margin-bottom:6px}
   .next p{color:var(--ink-500);font-size:15px;margin-bottom:16px}
+  .optin{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;margin-top:32px}
+  .optin h3{font-weight:800;margin-bottom:6px}
+  .optin p{color:var(--ink-500);font-size:15px;margin-bottom:16px}
+  .optin form{display:flex;gap:10px;flex-wrap:wrap}
+  .optin input[type=email]{flex:1;min-width:220px;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper)}
+  .optin button{font:inherit;font-weight:700;font-size:15px;padding:13px 22px;border:0;border-radius:10px;background:var(--navy);color:var(--paper);cursor:pointer}
   footer{background:var(--navy);color:#8FA6BE;padding:32px 0;font-size:13.5px}
   footer a{color:#C6D2DF}
 </style>
@@ -56,16 +62,30 @@
       <p>This sheet condenses what a senior analyst checks before any DCF leaves the desk: the seven mistakes that come up again and again, the order in which a model should actually be built, and a final checklist to run before you hit send.</p>
       <p>It's designed to be printed and pinned next to your monitor. No email required.</p>
     </div>
+    <div class="optin">
+      <h3>Get the next one by email</h3>
+      <p>New cheat sheets and model releases go to this list. Nothing else goes out on it, and a reply takes you off.</p>
+      <form action="https://formsubmit.co/finmodelai.contact@gmail.com" method="POST">
+        <input type="email" name="email" placeholder="you@company.com" required>
+        <input type="hidden" name="_subject" value="New cheat sheet subscriber">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://finmodelai.github.io/subscribed/">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="source" value="dcf-analyst-cheatsheet">
+        <button type="submit">Send it to me</button>
+      </form>
+    </div>
     <div class="next">
       <h3>Want the full DCF model, not just the checklist?</h3>
       <p>The FinModelAI DCF Valuation Model applies the workflow on this sheet across three scenarios, a full WACC build and two terminal-value methods. FAST colour-coded, no macros, no circular references.</p>
       <a class="btn primary" href="https://www.eloquens.com/tool/zpPLidMP/finmodelai/dcf-valuation-model-template-3-scenarios-wacc-build-dual-terminal-value?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=owned_cheatsheet">View the DCF model</a>
     </div>
     <div class="next">
-      <h3>Working on a rental deal or a SaaS plan instead?</h3>
-      <p>The Rental Property DSCR model sizes the loan on LTV, DSCR and debt yield, and tells you which of the three binds. The SaaS model runs five years off an MRR roll-forward, with unit economics and a headcount plan behind it.</p>
-      <a class="btn primary" href="https://flevy.com/browse/marketplace/rental-property-dscr-underwriting-and-loan-sizing-model-13101?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=owned_cheatsheet">View the DSCR model</a>
-      <a class="btn ghost" href="https://finmodelai.gumroad.com/l/saas-financial-model-pro?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=owned_cheatsheet">View the SaaS model</a>
+      <h3>Working on a real asset deal instead?</h3>
+      <p>The Solar + BESS model covers a utility-scale solar and storage project over ten years, with the ITC, MACRS, five revenue lines and a construction loan that takes out into permanent debt. The hotel model does the same work for a 180-key development on a USALI P&amp;L.</p>
+      <a class="btn primary" href="https://flevy.com/browse/marketplace/solar-bess-project-finance-model-itc-macrs-dscr-13420?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=owned_cheatsheet">View the Solar + BESS model</a>
+      <a class="btn ghost" href="https://flevy.com/browse/marketplace/hotel-development-and-acquisition-model-usali-pandl-dscr-13477?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=owned_cheatsheet">View the hotel model</a>
     </div>
   </div>
 </main>
