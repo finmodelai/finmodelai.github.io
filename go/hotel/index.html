@@ -15,6 +15,12 @@ If nothing happens, <a id="f" href="https://flevy.com/browse/marketplace/hotel-d
 <script>
 (function(){
   var dest = "https://flevy.com/browse/marketplace/hotel-development-and-acquisition-model-usali-pandl-dscr-13477?utm_source=finmodelai_site&utm_medium=referral&utm_campaign=go_hotel";
+  var q = new URLSearchParams(location.search);
+  if (q.toString()) {
+    var d = new URL(dest);
+    q.forEach(function(v,k){ if (k.indexOf("utm_") === 0) d.searchParams.set(k, v); });
+    dest = d.toString();
+  }
   var done = false;
   function go(){ if(!done){ done = true; location.replace(dest); } }
   try {

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sizing project debt from CFADS: sculpting, the tenor solve, and what belongs in the numerator | FinModelAI</title>
+<meta name="description" content="What goes into CFADS and what does not, why reserve movements sit outside the ratio, how DSCR sculpting sizes debt, why sculpted principal goes negative in year one, and how LLCR and PLCR differ from a period test.">
+<link rel="canonical" href="https://finmodelai.github.io/cfads-dscr-project-debt/">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#0F2137;--ink-500:#5A6B7E;--paper:#FAF7F2;--paper-cool:#F4F6F8;--line:#E5E1DA;--blue-corp:#1E4E8C;--blue-vif:#3B82F6}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--navy);line-height:1.62}
+  a{color:var(--blue-corp)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  header.hero{background:var(--navy);color:var(--paper);padding:64px 0 52px}
+  header.hero .wrap{max-width:820px}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8FA6BE;margin-bottom:16px}
+  .eyebrow a{color:#8FA6BE;text-decoration:none}
+  h1{font-size:clamp(28px,4.2vw,42px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+  article{padding:52px 0 72px}
+  h2{font-size:23px;font-weight:800;letter-spacing:-.01em;margin:40px 0 12px}
+  p{margin-bottom:16px;font-size:17px}
+  p.lede{font-size:19px;color:var(--ink-500)}
+  p.formula{background:var(--paper-cool);border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-weight:600;font-size:16px}
+  ul.errs{margin:0 0 16px 22px}
+  ul.errs li{margin-bottom:10px;font-size:17px}
+  .cta-wrap{margin-top:28px}
+  a.cta{display:inline-block;font-weight:700;font-size:16px;color:var(--paper);background:var(--navy);padding:14px 22px;border-radius:10px;text-decoration:none}
+  p.small{font-size:15px;color:var(--ink-500)}
+  footer{background:var(--navy);color:#8FA6BE;padding:32px 0;font-size:13.5px}
+  footer a{color:#C6D2DF}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div class="eyebrow"><a href="/">FinModelAI</a> &middot; Project Finance</div>
+<h1>Sizing project debt from CFADS: sculpting, the tenor solve, and what belongs in the numerator</h1>
+</div></header>
+<article><div class="wrap">
+
+<p class="lede">Four questions come up again and again in project finance threads, and they are really one question wearing four hats. Do reserve movements go in CFADS? Why does my sculpted principal go negative in year one? Should I solve for a target tenor or let the tenor fall out? Why does my DSCR disagree with the bank's?</p>
+
+<h2>CFADS is a period measure of operating cash, and nothing else</h2>
+<p>Cash Flow Available for Debt Service is what the project generates in a period, before it pays lenders: revenue, less operating expenses, less cash taxes, less maintenance capex, less the movement in working capital.</p>
+<p>Depreciation is out because it is not cash. Interest and principal are out because they are what CFADS gets measured against. Development capex is out of operating-period CFADS because it belongs to the construction phase.</p>
+<p>Reserve contributions and reserve draws are out too. A reserve account sits downstream of CFADS: the project earns cash, the coverage test decides whether that cash covers debt service, and only then does the waterfall fund or draw a reserve. Put reserve movements in the numerator and the ratio becomes partly self-referential, because the reserve is funded out of the cash flow the ratio is testing.</p>
+<p>Then there is the reason this argument never dies. The ratio in your loan agreement may not be called DSCR and may not use bare CFADS. Term sheets routinely define a "Net Cash Flow" that starts from CFADS and adjusts for negotiated items, sometimes including flows into and out of reserve accounts. Rating agency methodology and bank credit methodology differ here, and two lenders on the same asset class will hand you two different definitions.</p>
+<p>So you have two numbers with two jobs. Model CFADS clean, as operating cash. Model the covenant ratio separately, on its own row, exactly as the agreement defines it. When someone asks whether reserves belong in CFADS: no for CFADS, and read your agreement for the covenant.</p>
+
+<h2>Sculpting solves debt service from CFADS, not the other way round</h2>
+<p>An amortising profile borrowed from corporate lending will over-cover in strong years and breach in weak ones. Sculpting inverts the problem. You fix the coverage you want and let the profile follow.</p>
+<p class="formula">Debt service<sub>t</sub> = CFADS<sub>t</sub> &divide; target DSCR</p>
+<p>Interest is whatever the outstanding balance and the margin produce, so principal is the residue:</p>
+<p class="formula">Principal<sub>t</sub> = Debt service<sub>t</sub> &minus; Interest<sub>t</sub></p>
+<p>Debt at close is then the present value of that debt service stream, discounted at the loan's all-in rate. Run it once and the balance changes, which changes interest, which changes principal. Two or three passes converge. You can get there without enabling iterative calculation by solving the balance analytically or running a short manual convergence loop, which keeps the file auditable and portable between machines.</p>
+
+<h2>When sculpted principal goes negative</h2>
+<p>This is the target tenor versus natural tenor problem, and it has a mechanical cause. If early-period CFADS divided by the target DSCR comes in below the interest bill, the residue is negative. The formula is telling you the project cannot service that much debt that early. Negative principal means the loan is capitalising interest, and most term sheets forbid that outside construction.</p>
+<p>Three fixes hold up. A grace period leaves the loan interest-only for the first periods and starts principal when CFADS supports it, which extends the tenor. Cutting the debt quantum lowers the interest bill and gives you a positive residue from period one, at a cost to equity returns. Or you let the tenor float: solve the natural tenor out of the sculpted profile instead of forcing a target, and if the natural tenor runs past the concession or the PPA term, that is information about the deal rather than a modelling nuisance.</p>
+<p>Flooring principal at zero and moving on is not a fix. The model balances while the structure does not, and the error surfaces in diligence.</p>
+
+<h2>Reserve accounts sit outside the ratio</h2>
+<p>A debt service reserve account is normally sized at six months of forward debt service, funded at commercial operation out of the financing or built up from cash flow. Maintenance reserves work the same way against a forecast overhaul schedule. Both are lender protection against a bad period, and both are governed by the waterfall.</p>
+<p>The order matters, and it is the order your model should compute in: CFADS, then senior debt service, then reserve funding to target, then any sweep, then distributions. A reserve draw does not improve the DSCR of the period it rescues. It keeps the lender whole while the ratio records the shortfall, which is what the reserve is for.</p>
+
+<h2>LLCR and PLCR answer a different question</h2>
+<p>DSCR is a period test. Life coverage ratios are stock tests: the present value of CFADS over the remaining loan life, or over the remaining project life, divided by debt outstanding. They catch the project that passes every period test while running out of runway. Discount at the loan rate, keep the horizon definitions explicit in the model, and expect covenants on both.</p>
+
+<h2>The errors that actually cost time</h2>
+<ul class="errs">
+<li>Mixing the analytical DSCR and the covenant DSCR on one row, so the two can never be reconciled.</li>
+<li>Building sculpting on a live circular reference, then chasing an unstable file every time an assumption moves.</li>
+<li>Leaving interest during construction and financing fees out of the funding requirement, which understates debt at close and flatters every ratio downstream.</li>
+<li>Dropping cash taxes from CFADS. Tax is a cash cost sitting above debt service, and the omission bites hardest in the years an accelerated depreciation schedule unwinds.</li>
+<li>Sizing the DSRA off trailing rather than forward debt service.</li>
+<li>Using EBITDA as the numerator and calling it CFADS. It is a reasonable first approximation, but it ignores cash tax, working capital and maintenance capex, so it reads high.</li>
+</ul>
+
+<h2>Where our model sits on this</h2>
+<p>Straight answer, because it matters if you are about to buy something. Our Solar + BESS project finance model covers the deal side of this: a monthly S-curve construction budget with capitalised construction interest, the construction loan taken out by a permanent loan with optional refinancing, ITC and MACRS treatment, an annuity amortisation profile, and a DSCR row computed as EBITDA over debt service. It does not sculpt debt to a target DSCR, and it does not model a DSRA, LLCR or PLCR. If your lender is sculpting, you will be building that layer on top.</p>
+<p>Fourteen tabs, every formula visible, no macros and no iterative calculation.</p>
+<p class="cta-wrap"><a class="cta" href="/go/solar/?utm_source=finmodelai_site&amp;utm_medium=organic&amp;utm_campaign=cfads_dscr_article">See the Solar + BESS model on Flevy</a></p>
+<p class="small">Prefer something free first? The <a href="/dcf-analyst-cheatsheet/">DCF analyst cheat sheet</a> is a one-page reference, no purchase.</p>
+</div></article>
+<footer><div class="wrap">FinModelAI &middot; <a href="/">Excel financial models</a> &middot; <a href="/dcf-analyst-cheatsheet/">Free DCF cheat sheet</a></div></footer>
+</body>
+</html>
