@@ -2,4 +2,5 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://finmodelai.github.io/</loc></url>
   <url><loc>https://finmodelai.github.io/dcf-analyst-cheatsheet/</loc></url>
+  <url><loc>https://finmodelai.github.io/cfads-dscr-project-debt/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
