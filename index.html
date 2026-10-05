@@ -1,138 +1,601 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinModelAI — Professional Excel Financial Model Templates</title>
-<meta name="description" content="Professional Excel financial models built to the FAST standard: DCF, LBO, merger and project finance templates plus personal finance trackers. No macros, no circular references — plug-and-play. Pro models available on Flevy.">
-<link rel="canonical" href="https://finmodelai.github.io/">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --navy:#0F2137;--navy-sec:#1F3A52;--ink-500:#5A6B7E;--paper:#FAF7F2;
-    --paper-cool:#F4F6F8;--line:#E5E1DA;--blue-corp:#1E4E8C;--blue-vif:#3B82F6;
-    --terracotta:#E07A3C;--gold:#C8A24B;
-  }
-  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--navy);line-height:1.55}
-  a{color:var(--blue-corp)}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  header.hero{background:var(--navy);color:var(--paper);padding:88px 0 72px}
-  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8FA6BE;margin-bottom:18px}
-  h1{font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-.02em;line-height:1.08;max-width:720px}
-  .hero p{margin-top:20px;font-size:18px;color:#C6D2DF;max-width:640px}
-  .hero .rule{width:72px;height:4px;background:var(--blue-vif);margin-top:28px}
-  section{padding:64px 0}
-  h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
-  .sub{color:var(--ink-500);margin-bottom:36px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;box-shadow:0 20px 40px rgba(15,33,55,.06)}
-  .card .tag{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
-  .tag.pro{color:var(--blue-corp)}.tag.perso{color:var(--terracotta)}.tag.bundle{color:var(--gold)}
-  .card h3{font-size:19px;font-weight:800;margin-bottom:8px}
-  .card p{font-size:14.5px;color:var(--ink-500);flex:1}
-  .card .cta{margin-top:20px;display:inline-block;font-weight:700;font-size:14.5px;color:var(--paper);background:var(--navy);padding:11px 18px;border-radius:10px;text-decoration:none;text-align:center}
-  .card .cta.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-  .std{background:var(--paper-cool);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .std ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 32px;margin-top:8px}
-  .std li{font-size:15px;padding-left:26px;position:relative}
-  .std li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:4px;background:var(--blue-vif)}
-  footer{background:var(--navy);color:#8FA6BE;padding:36px 0;font-size:13.5px}
-  footer a{color:#C6D2DF}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Premium Excel financial models for private equity, investment banking, corporate finance, and project development." />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Libre+Baskerville:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <title>FinModelAI — Institutional-Grade Excel Models</title>
+  <style>
+    :root {
+      --bg: #f5f7f5;
+      --paper: #ffffff;
+      --ink: #12211b;
+      --muted: #53635b;
+      --line: #d8dfda;
+      --line-strong: #bac7bf;
+      --accent: #0f7252;
+      --accent-strong: #07523b;
+      --accent-soft: #dcefe7;
+      --gold: #a67722;
+      --nav: rgba(245, 247, 245, 0.92);
+      --dark-panel: #10241c;
+      --dark-panel-2: #163127;
+      --dark-ink: #f6fbf8;
+      --dark-muted: #b9c9c0;
+      --shadow: 0 18px 50px rgba(21, 43, 33, 0.1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1713;
+        --paper: #13221b;
+        --ink: #f0f7f3;
+        --muted: #b2c0b8;
+        --line: #2b3d34;
+        --line-strong: #41574b;
+        --accent: #58c69a;
+        --accent-strong: #8bdab9;
+        --accent-soft: #19392c;
+        --gold: #d5ad61;
+        --nav: rgba(13, 23, 19, 0.92);
+        --dark-panel: #09130f;
+        --dark-panel-2: #10261c;
+        --dark-ink: #f6fbf8;
+        --dark-muted: #bacbc1;
+        --shadow: 0 22px 60px rgba(0, 0, 0, 0.3);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--nav);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 28px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid transparent;
+      transition: background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .button.primary { background: var(--accent-strong); color: #fff; }
+    @media (prefers-color-scheme: dark) { .button.primary { color: #07130e; } }
+    .button.primary:hover { background: var(--accent); }
+    .button.secondary { border-color: var(--line-strong); background: var(--paper); color: var(--ink); }
+    .button.secondary:hover { border-color: var(--accent); color: var(--accent-strong); }
+    .button.small { min-height: 40px; padding: 0 16px; font-size: 14px; }
+    .arrow { font-size: 18px; line-height: 1; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 72px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 52px 52px;
+      opacity: .26;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.6), transparent 78%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .02em;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--gold); }
+    h1, h2 { font-family: "Libre Baskerville", Georgia, serif; letter-spacing: -.035em; }
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(43px, 6vw, 72px);
+      line-height: 1.06;
+      font-weight: 400;
+    }
+    .hero-copy {
+      margin: 24px 0 30px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.6;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .workbook {
+      position: relative;
+      background: var(--dark-panel);
+      color: var(--dark-ink);
+      border: 1px solid #345044;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: rotate(.7deg);
+    }
+    .workbook::after {
+      content: "";
+      position: absolute;
+      right: -40px; bottom: -60px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(32, 143, 101, .18);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+    .wb-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid #345044;
+      font-size: 12px;
+      color: var(--dark-muted);
+    }
+    .dots { display: flex; gap: 6px; }
+    .dots span { width: 7px; height: 7px; border-radius: 50%; background: #5b7468; }
+    .wb-body { padding: 20px; }
+    .formula {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      min-height: 36px;
+      margin-bottom: 20px;
+      border: 1px solid #3d584c;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: #dbe9e1;
+    }
+    .fx { display: grid; place-items: center; border-right: 1px solid #3d584c; color: #73d5ab; }
+    .formula span:last-child { padding: 8px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .model-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .model-node { padding: 16px 12px; background: var(--dark-panel-2); border-top: 2px solid #4fc094; }
+    .model-node:nth-child(2) { border-top-color: #d1a85c; }
+    .model-node:nth-child(3) { border-top-color: #80aee0; }
+    .model-node b { display: block; margin-bottom: 4px; font-size: 13px; }
+    .model-node span { display: block; color: var(--dark-muted); font-size: 11px; }
+    .wb-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 9px; margin-top: 9px; }
+    .sheet-block { min-height: 110px; padding: 14px; background: #0d1d17; border: 1px solid #2d473b; }
+    .sheet-label { color: var(--dark-muted); font-size: 11px; }
+    .bars { display: flex; align-items: flex-end; gap: 8px; height: 60px; margin-top: 12px; }
+    .bars span { width: 14%; background: #4fc094; border-radius: 2px 2px 0 0; }
+    .bars span:nth-child(1) { height: 28%; opacity: .55; }
+    .bars span:nth-child(2) { height: 42%; opacity: .65; }
+    .bars span:nth-child(3) { height: 54%; opacity: .75; }
+    .bars span:nth-child(4) { height: 70%; opacity: .85; }
+    .bars span:nth-child(5) { height: 88%; }
+    .checks { display: grid; gap: 10px; margin-top: 13px; }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--dark-muted); }
+    .check::before { content: "✓"; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: rgba(79,192,148,.18); color: #73d5ab; font-weight: 700; }
+    .wb-tabs { display: flex; gap: 2px; padding: 0 20px 14px; overflow: hidden; }
+    .tab { padding: 7px 10px; background: #1b3328; color: var(--dark-muted); font-size: 9px; white-space: nowrap; }
+    .tab.active { background: #266447; color: #fff; }
+
+    .trust { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .trust-item { padding: 22px 26px; border-left: 1px solid var(--line); font-weight: 700; font-size: 14px; }
+    .trust-item:first-child { border-left: 0; padding-left: 0; }
+    .trust-item span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; font-weight: 500; }
+
+    section { padding: 90px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr .85fr; gap: 48px; align-items: end; margin-bottom: 44px; }
+    .section-head h2, .cta-panel h2 {
+      margin: 0;
+      font-size: clamp(34px, 4.5vw, 52px);
+      line-height: 1.13;
+      font-weight: 400;
+    }
+    .section-head p { margin: 0; color: var(--muted); font-size: 17px; }
+    .roles { padding-top: 72px; }
+    .role-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+    .role { padding: 28px 24px 30px; border-left: 1px solid var(--line); }
+    .role:first-child { border-left: 0; }
+    .role-index { display: block; color: var(--gold); font-family: "Libre Baskerville", serif; font-size: 13px; margin-bottom: 32px; }
+    .role h3 { margin: 0 0 8px; font-size: 18px; }
+    .role p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .resources { padding-top: 84px; background: var(--paper); border-top: 1px solid var(--line); }
+    .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .resource-card {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 24px;
+      padding: 30px;
+      border: 1px solid var(--line-strong);
+      background: var(--bg);
+      border-radius: 10px;
+    }
+    .resource-mark {
+      display: grid;
+      place-items: center;
+      width: 84px;
+      height: 84px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .resource-type { display: block; margin-bottom: 8px; color: var(--gold); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+    .resource-card h3 { margin: 0 0 8px; font-size: 21px; }
+    .resource-card p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+    .resource-card a { color: var(--accent-strong); font-weight: 700; font-size: 14px; text-underline-offset: 3px; }
+    .catalog { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .catalog-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .product-group { padding: 30px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+    .group-title { margin: 0 0 22px; color: var(--accent-strong); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .product { padding: 20px 0; border-top: 1px solid var(--line); }
+    .product:first-of-type { border-top: 0; padding-top: 0; }
+    .product:last-child { padding-bottom: 0; }
+    .product h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 7px; font-size: 18px; line-height: 1.3; }
+    .product .metric { flex: none; color: var(--gold); font-size: 12px; font-weight: 700; }
+    .product p { margin: 0; color: var(--muted); font-size: 14px; }
+    .catalog-note { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 30px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .catalog-note p { margin: 0; color: var(--muted); }
+    .market-links { display: flex; align-items: center; gap: 18px; flex: none; }
+    .market-links > a:not(.button) { color: var(--accent-strong); font-size: 14px; font-weight: 700; text-underline-offset: 3px; }
+
+    .why-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 80px; align-items: start; }
+    .why-intro { position: sticky; top: 105px; }
+    .why-intro h2 { margin: 0 0 18px; font-size: clamp(34px, 4.5vw, 52px); line-height: 1.14; font-weight: 400; }
+    .why-intro p { margin: 0; color: var(--muted); font-size: 17px; }
+    .proof-list { border-top: 1px solid var(--line-strong); }
+    .proof { display: grid; grid-template-columns: 50px 1fr; gap: 18px; padding: 30px 0; border-bottom: 1px solid var(--line); }
+    .proof-number { color: var(--gold); font-family: "Libre Baskerville", serif; }
+    .proof h3 { margin: 0 0 7px; font-size: 20px; }
+    .proof p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .how { background: var(--dark-panel); color: var(--dark-ink); }
+    .how .section-head p { color: var(--dark-muted); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .step { position: relative; padding-top: 22px; border-top: 2px solid #365548; }
+    .step:first-child { border-color: #d1a85c; }
+    .step span { color: #8bcfb2; font-size: 13px; font-weight: 700; }
+    .step h3 { margin: 22px 0 9px; font-size: 21px; }
+    .step p { margin: 0; color: var(--dark-muted); font-size: 15px; }
+
+    .faq-layout { display: grid; grid-template-columns: .65fr 1.35fr; gap: 80px; }
+    .faq-layout h2 { margin: 0; font-size: clamp(34px, 4.5vw, 52px); line-height: 1.14; font-weight: 400; }
+    .faq-list { border-top: 1px solid var(--line-strong); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { position: relative; cursor: pointer; list-style: none; padding: 24px 42px 24px 0; font-weight: 700; font-size: 17px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 4px; top: 22px; color: var(--accent-strong); font-size: 24px; font-weight: 400; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: -5px 42px 24px 0; color: var(--muted); font-size: 15px; }
+
+    .cta { padding-top: 20px; padding-bottom: 90px; }
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      padding: 56px;
+      color: var(--dark-ink);
+      background: var(--dark-panel);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cta-panel::after { content: ""; position: absolute; right: -100px; top: -120px; width: 300px; height: 300px; border: 1px solid rgba(209,168,92,.4); border-radius: 50%; box-shadow: 0 0 0 45px rgba(209,168,92,.05), 0 0 0 90px rgba(209,168,92,.025); }
+    .cta-panel h2 { max-width: 720px; position: relative; z-index: 1; }
+    .cta-panel .button { position: relative; z-index: 1; background: #f3f8f5; color: #0a2a1e; }
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+    .footer-inner a { color: var(--ink); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 68px; }
+      .hero-grid, .section-head, .why-layout, .faq-layout { grid-template-columns: 1fr; gap: 34px; }
+      .workbook { max-width: 620px; transform: none; }
+      .trust-grid, .role-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(3) { border-left: 0; }
+      .trust-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .role:nth-child(3) { border-left: 0; }
+      .role:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .resource-grid, .catalog-groups { grid-template-columns: 1fr; }
+      .why-intro { position: static; }
+      .cta-panel { grid-template-columns: 1fr; padding: 44px; }
+      .steps { gap: 20px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 30px, 1180px); }
+      .site-nav { position: static; }
+      .nav-inner { min-height: 60px; justify-content: center; }
+      .nav-links a { display: none; }
+      .nav-links .button { display: inline-flex; }
+      .hero { padding: 56px 0 52px; }
+      h1 { font-size: 43px; }
+      .hero-copy { font-size: 17px; }
+      .hero-actions { display: grid; }
+      .button { width: 100%; }
+      .model-flow { grid-template-columns: 1fr; }
+      .wb-grid { grid-template-columns: 1fr; }
+      .workbook { border-radius: 8px; }
+      .wb-tabs { overflow: hidden; }
+      .trust-grid, .role-grid, .steps { grid-template-columns: 1fr; }
+      .trust-item, .trust-item:first-child { padding: 18px 0; border-left: 0; border-top: 1px solid var(--line); }
+      .trust-item:first-child { border-top: 0; }
+      .role { padding: 24px 0; border-left: 0; border-top: 1px solid var(--line); }
+      .role:first-child { border-top: 0; }
+      .role-index { margin-bottom: 14px; }
+      section { padding: 68px 0; }
+      .section-head { margin-bottom: 32px; }
+      .resource-card { grid-template-columns: 1fr; padding: 22px 18px; }
+      .resource-mark { width: 64px; height: 64px; }
+      .product-group { padding: 22px 18px; }
+      .product h3 { display: block; }
+      .product .metric { display: block; margin-top: 5px; }
+      .catalog-note { align-items: stretch; flex-direction: column; }
+      .market-links { align-items: stretch; flex-direction: column; }
+      .market-links .button { width: 100%; }
+      .proof { grid-template-columns: 36px 1fr; gap: 12px; }
+      .step { padding: 22px 0 26px; }
+      .faq-layout { gap: 28px; }
+      .cta { padding-bottom: 68px; }
+      .cta-panel { padding: 36px 24px; border-radius: 8px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Financial Modeling · Excel Templates</div>
-    <h1>Professional Excel financial models, built like an analyst would.</h1>
-    <p>DCF, LBO, merger and project finance templates that follow the FAST standard — no macros, no circular references, fully transparent formulas. Download, plug in your assumptions, get to the answer.</p>
-    <div class="rule"></div>
-  </div>
-</header>
-
-<section>
-  <div class="wrap">
-    <h2>Start free</h2>
-    <p class="sub">A one-page reference used by analysts before every DCF review.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="tag pro">Free Resource</div>
-        <h3>DCF Analyst Cheat Sheet</h3>
-        <p>The 7 DCF mistakes that get models rejected in review, the correct build order, and a pre-send checklist — on one page, print-ready.</p>
-        <a class="cta" href="/dcf-analyst-cheatsheet/">Get the cheat sheet</a>
-      </div>
-      <div class="card">
-        <div class="tag pro">Free Guide</div>
-        <h3>Sizing project debt from CFADS</h3>
-        <p>What belongs in CFADS and what does not, why reserve movements sit outside the ratio, how DSCR sculpting sizes debt, and why sculpted principal goes negative in year one.</p>
-        <a class="cta ghost" href="/cfads-dscr-project-debt/">Read the guide</a>
-      </div>
-      <div class="card">
-        <div class="tag bundle">Bundle</div>
-        <h3>DCF + LBO + 3-Statement Bundle</h3>
-        <p>The three core valuation models every analyst builds, in one consistent package — same structure, same standards, same colour code.</p>
-        <a class="cta" href="https://finmodelai.gumroad.com/l/finmodelai-bundle?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">Get the bundle</a>
-      </div>
-      <div class="card">
-        <div class="tag perso">Personal Finance</div>
-        <h3>Debt Payoff Tracker</h3>
-        <p>Snowball vs avalanche comparison, payoff date projection and interest saved — a clean spreadsheet, not an app subscription.</p>
-        <a class="cta" href="https://finmodelai.gumroad.com/l/debt-payoff-tracker?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">Get the tracker</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="wrap nav-inner">
+      <div class="nav-links">
+        <a href="#resources">Free resources</a>
+        <a href="#models">Models</a>
+        <a href="#why">Standards</a>
+        <a href="#faq">FAQ</a>
+        <a class="button primary small" href="https://finmodelai.gumroad.com?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Browse all models <span class="arrow">↗</span></a>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section>
-  <div class="wrap">
-    <h2>Pro models</h2>
-    <p class="sub">Excel models sold on Flevy, a marketplace for professional business templates, and on our own storefront.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="tag pro">SaaS</div>
-        <h3>SaaS Financial Model Template</h3>
-        <p>An MRR roll-forward that separates new, expansion and churned revenue, with net revenue retention read off the same build. LTV:CAC, CAC payback and the Rule of 40 sit on the unit economics tab, and headcount is planned by department.</p>
-        <a class="cta" href="https://finmodelai.gumroad.com/l/saas-financial-model-pro?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">View the SaaS model</a>
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">FinModelAI · Professional Excel models</div>
+          <h1>Investor-ready models—without weeks of rebuilding.</h1>
+          <p class="hero-copy">FinModelAI builds professional Excel models for valuation, transaction analysis, operating forecasts, project finance, real estate underwriting, and personal debt planning—built to customize, review, and use.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://finmodelai.gumroad.com?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Browse all models <span class="arrow">↗</span></a>
+            <a class="button secondary" href="#models">Explore the catalog <span class="arrow">↓</span></a>
+          </div>
+        </div>
+
+        <div class="workbook" aria-label="Illustration of a structured financial model workbook">
+          <div class="wb-top"><span>MODEL ARCHITECTURE</span><span class="dots" aria-hidden="true"><span></span><span></span><span></span></span></div>
+          <div class="wb-body">
+            <div class="formula"><span class="fx">ƒx</span><span>= Drivers × Operating assumptions</span></div>
+            <div class="model-flow">
+              <div class="model-node"><b>Inputs</b><span>Color-coded assumptions</span></div>
+              <div class="model-node"><b>Logic</b><span>Fully linked schedules</span></div>
+              <div class="model-node"><b>Outputs</b><span>Decision-ready analysis</span></div>
+            </div>
+            <div class="wb-grid">
+              <div class="sheet-block">
+                <span class="sheet-label">Projection profile</span>
+                <div class="bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+              <div class="sheet-block">
+                <span class="sheet-label">Model integrity</span>
+                <div class="checks"><span class="check">Error checks</span><span class="check">No macros</span><span class="check">Audit-ready</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="wb-tabs" aria-hidden="true"><span class="tab">Assumptions</span><span class="tab">Operations</span><span class="tab active">Dashboard</span><span class="tab">Valuation</span></div>
+        </div>
       </div>
-      <div class="card">
-        <div class="tag pro">Project Finance</div>
-        <h3>Solar + BESS Project Finance Model</h3>
-        <p>A utility-scale solar plant with battery storage, from construction through a ten-year hold. The 30% ITC and the 5-year MACRS schedule are built in, revenue splits across PPA, merchant, battery arbitrage, capacity payments and RECs, and the construction loan takes out into permanent debt with DSCR tracked year by year.</p>
-        <a class="cta" href="/go/solar/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">View the Solar + BESS model</a>
-      </div>
-      <div class="card">
-        <div class="tag pro">Hospitality</div>
-        <h3>Hotel Development &amp; Acquisition Model</h3>
-        <p>180 keys, development through disposition, held ten years. Room, F&amp;B and other operated revenue ramp with occupancy, a USALI expense build carries down to GOP and NOI, an FF&amp;E reserve sits alongside management and franchise fees, and the exit runs on a cap rate or price per key.</p>
-        <a class="cta" href="/go/hotel/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">View the hotel model</a>
-      </div>
-      <div class="card">
-        <div class="tag pro">Real Estate</div>
-        <h3>Rental Property DSCR Underwriting Model</h3>
-        <p>Loan sizing tested three ways (LTV, DSCR and debt yield), the way a lender underwrites a rental deal.</p>
-        <a class="cta" href="/go/dscr/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home">View the DSCR model</a>
+    </header>
+
+    <div class="trust" aria-label="Model standards">
+      <div class="wrap trust-grid">
+        <div class="trust-item">FAST colour coding<span>Blue inputs, black formulas, green links</span></div>
+        <div class="trust-item">No macros or VBA<span>Transparent Excel logic</span></div>
+        <div class="trust-item">No circular references<span>Clean recalculation</span></div>
+        <div class="trust-item">Release verified<span>Recalculation checked before release</span></div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="std">
-  <div class="wrap">
-    <h2>Every model follows the same standards</h2>
-    <ul>
-      <li>FAST standard colour coding — blue inputs, black formulas, green links</li>
-      <li>No macros, no VBA — maximum compatibility, zero security warnings</li>
-      <li>No circular references — models recalculate cleanly every time</li>
-      <li>Recalculation-verified before release</li>
-    </ul>
-  </div>
-</section>
+    <section class="roles" aria-labelledby="roles-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="roles-title">Built for people who make high-stakes finance decisions.</h2>
+          <p>Start with a rigorous framework, then adapt the assumptions, capital structure, and outputs to the deal in front of you.</p>
+        </div>
+        <div class="role-grid">
+          <article class="role"><span class="role-index">01</span><h3>Analysts &amp; deal teams</h3><p>DCF, LBO, three-statement, and underwriting foundations for investment analysis.</p></article>
+          <article class="role"><span class="role-index">02</span><h3>Finance operators</h3><p>Structured SaaS forecasts for planning, fundraising, and performance review.</p></article>
+          <article class="role"><span class="role-index">03</span><h3>Project developers</h3><p>Integrated analysis for solar, battery storage, hospitality, and rental property deals.</p></article>
+          <article class="role"><span class="role-index">04</span><h3>Independent planners</h3><p>A clear spreadsheet for comparing debt snowball and avalanche payoff paths.</p></article>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <div class="wrap">
-    FinModelAI — Excel financial model templates · <a href="/dcf-analyst-cheatsheet/">Free DCF cheat sheet</a> · <a href="mailto:finmodelai.contact@gmail.com">Contact</a>
-  </div>
-</footer>
+    <section class="resources" id="resources" aria-labelledby="resources-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="resources-title">Start with the thinking, free.</h2>
+          <p>Two practical references for sharper review and project finance mechanics—available without buying a model.</p>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card">
+            <div class="resource-mark">DCF</div>
+            <div>
+              <span class="resource-type">Free one-page reference</span>
+              <h3>DCF Analyst Cheat Sheet</h3>
+              <p>The seven DCF mistakes that get models rejected in review, the correct build order, and a pre-send checklist.</p>
+              <a href="/dcf-analyst-cheatsheet/" target="_blank" rel="noopener noreferrer">Get the cheat sheet <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="resource-card">
+            <div class="resource-mark">DSCR</div>
+            <div>
+              <span class="resource-type">Free technical guide</span>
+              <h3>Sizing project debt from CFADS</h3>
+              <p>What belongs in CFADS, why reserve movements sit outside the ratio, how DSCR sculpting sizes debt, and why sculpted principal can go negative.</p>
+              <a href="/cfads-dscr-project-debt/" target="_blank" rel="noopener noreferrer">Read the guide <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="models" aria-labelledby="models-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="models-title">Models for the work in front of you.</h2>
+          <p>Six focused Excel products—from core valuation to project underwriting and personal debt planning.</p>
+        </div>
+
+        <div class="catalog-groups">
+          <div class="product-group">
+            <h3 class="group-title">Valuation &amp; corporate finance</h3>
+            <article class="product"><h3>DCF + LBO + 3-Statement Bundle <span class="metric">Three core models</span></h3><p>One consistent package for valuation, leveraged buyout analysis, and integrated financial statement forecasting.</p><p><a href="https://finmodelai.gumroad.com/l/finmodelai-bundle?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Get the bundle <span class="arrow">↗</span></a></p></article>
+            <article class="product"><h3>SaaS Financial Model Template <span class="metric">Operating model</span></h3><p>MRR roll-forward across new, expansion, and churned revenue; NRR, LTV:CAC, CAC payback, Rule of 40, and departmental headcount.</p><p><a href="https://finmodelai.gumroad.com/l/saas-financial-model-pro?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">View the SaaS model <span class="arrow">↗</span></a></p></article>
+          </div>
+
+          <div class="product-group">
+            <h3 class="group-title">Project finance &amp; hospitality</h3>
+            <article class="product"><h3>Solar + BESS Project Finance Model <span class="metric">Utility-scale</span></h3><p>30% ITC, five-year MACRS, PPA, merchant, arbitrage, capacity, and REC revenue splits; construction-to-permanent debt and DSCR.</p><p><a href="/go/solar/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">View the Solar + BESS model <span class="arrow">↗</span></a></p></article>
+            <article class="product"><h3>Hotel Development &amp; Acquisition Model <span class="metric">180 keys</span></h3><p>USALI expense build through GOP and NOI, FF&amp;E reserve, and an exit by cap rate or price per key.</p><p><a href="/go/hotel/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">View the hotel model <span class="arrow">↗</span></a></p></article>
+          </div>
+
+          <div class="product-group">
+            <h3 class="group-title">Real estate underwriting</h3>
+            <article class="product"><h3>Rental Property DSCR Underwriting Model <span class="metric">Three sizing tests</span></h3><p>Loan sizing tested through LTV, DSCR, and debt yield—the core views used to underwrite a rental deal.</p><p><a href="/go/dscr/?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">View the DSCR model <span class="arrow">↗</span></a></p></article>
+          </div>
+
+          <div class="product-group">
+            <h3 class="group-title">Personal finance</h3>
+            <article class="product"><h3>Debt Payoff Tracker <span class="metric">Snowball vs avalanche</span></h3><p>Compare payoff strategies, projected payoff date, and interest saved in a clean spreadsheet.</p><p><a href="https://finmodelai.gumroad.com/l/debt-payoff-tracker?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Get the tracker <span class="arrow">↗</span></a></p></article>
+          </div>
+        </div>
+
+        <div class="catalog-note">
+          <p>Shop direct on Gumroad. FinModelAI models are also available through Flevy and eFinancialModels.</p>
+          <div class="market-links">
+            Flevy
+            eFinancialModels
+            <a class="button primary" href="https://finmodelai.gumroad.com?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Browse the storefront <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" aria-labelledby="why-title">
+      <div class="wrap why-layout">
+        <div class="why-intro">
+          <h2 id="why-title">A consistent modeling standard.</h2>
+          <p>Every model follows the same rules for readability, compatibility, and clean recalculation.</p>
+        </div>
+        <div class="proof-list">
+          <article class="proof"><div class="proof-number">01</div><div><h3>FAST standard colour coding</h3><p>Blue inputs, black formulas, and green links keep cell intent visible during build and review.</p></div></article>
+          <article class="proof"><div class="proof-number">02</div><div><h3>No macros or VBA</h3><p>Standard Excel logic supports broad compatibility without macro security warnings.</p></div></article>
+          <article class="proof"><div class="proof-number">03</div><div><h3>No circular references</h3><p>The models are structured to recalculate cleanly without iterative calculation.</p></div></article>
+          <article class="proof"><div class="proof-number">04</div><div><h3>Recalculation-verified</h3><p>Each model is recalculation-verified before release.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="how-title">From download to decision.</h2>
+          <p>A disciplined head start—not a black box.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span>STEP 01</span><h3>Choose the right model</h3><p>Select the operating, valuation, transaction, or project finance structure that matches your use case.</p></article>
+          <article class="step"><span>STEP 02</span><h3>Replace the assumptions</h3><p>Customize the color-coded inputs, deal terms, financing assumptions, and operating drivers.</p></article>
+          <article class="step"><span>STEP 03</span><h3>Review the outputs</h3><p>Use the fully linked schedules, valuation analysis, sensitivity cases, and dashboards to support the decision.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-layout">
+        <h2 id="faq-title">Questions, answered.</h2>
+        <div class="faq-list">
+          <details open><summary>Are these models Excel templates?</summary><p>Yes. The catalog consists of Excel financial modeling templates designed to be customized for a specific company, transaction, or project.</p></details>
+          <details><summary>Do the models use macros?</summary><p>No. FinModelAI models are built without macros, keeping the workbook logic visible and easier to review.</p></details>
+          <details><summary>Who are the models designed for?</summary><p>They support analysts, finance teams, SaaS operators, solar and storage developers, hotel and rental property investors, and individuals comparing debt payoff strategies.</p></details>
+          <details><summary>Can I change the assumptions and structure?</summary><p>Yes. The models use color-coded inputs and industry-standard formatting and are designed to be easy to customize.</p></details>
+          <details><summary>Where can I see every model?</summary><p>Browse the direct storefront on Gumroad. Selected models are also available through Flevy and eFinancialModels.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-panel">
+          <h2>Start with a model built for the decision ahead.</h2>
+          <a class="button" href="https://finmodelai.gumroad.com?utm_source=finmodelai_site&amp;utm_medium=web&amp;utm_campaign=owned_home" target="_blank" rel="noopener noreferrer">Browse all models <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>FinModelAI · Excel financial model templates · <a href="/dcf-analyst-cheatsheet/">Free DCF cheat sheet</a> · <a href="mailto:finmodelai.contact@gmail.com">Contact</a></span>
+    </div>
+  </footer>
 </body>
 </html>
